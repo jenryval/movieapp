@@ -33,23 +33,30 @@
     <script type="text/javascript">
       // Initial array of movies
       var movies = ["The Matrix", "The Notebook", "Mr. Nobody", "The Lion King"];
-
+      var quesrURL = "http://www.ombdapi.com/?apikey=trilogy"
       // Function for displaying movie data
       function renderButtons() {
+        $("#buttons-view").empty()
         for (i = 0; i < movies.length; i++){
-          var button = $("<button>").text(movies[i]);
+          var button = $("<button>").text(movies[i]).addClass("movie-btn");
             $("#buttons-view").append(button);
         }
-        
-        // YOUR CODE GOES HERE
+        $(".movie-btn").on("click", ".movie-btn" , function(){
+         var title = $(this).text()
+         $.ajax({
+           url: queryURL + "&t" + title
+         }).then(function(movieData){
+
+         })
+        })
 
       }
 
       // This function handles events where one button is clicked
-      $("#add-movie").on("click", function() {
+      $("#add-movie").on("click", function(event) {
         event.preventDefault();
-        var movie = $("#movie-input").val();
-        movies.push(movie);
+        $("#movie-input").val();
+        movies.push(movies);
         // YOUR CODE GOES HERE
 
       });
